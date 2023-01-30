@@ -27,7 +27,7 @@ class Jeu:
         self.carte.dessiner()
         self.joueur.dessiner()
 
-    def cheque_evenements(self):
+    def chequer_evenements(self):
         for e in pg.event.get():
             if e.type == pg.QUIT or (e.type == pg.KEYDOWN and e.key == pg.K_ESCAPE):
                 pg.quit()
@@ -35,7 +35,7 @@ class Jeu:
 
     def execute(self):
         while True:
-            self.cheque_evenements()
+            self.chequer_evenements()
             self.maj()
             self.dessine()
 
