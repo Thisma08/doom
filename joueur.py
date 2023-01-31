@@ -52,9 +52,9 @@ class Joueur:
     def dessiner(self):
         pg.draw.circle(self.jeu.ecran, 'green', (self.x * 100, self.y * 100), 15)
 
-        pg.draw.line(self.jeu.ecran, 'yellow', (self.x * 100, self.y * 100),
-                     (self.x * 100 + LARG * math.cos(self.angle),
-                      self.y * 100 + LARG * math.sin(self.angle)), 2)
+        # pg.draw.line(self.jeu.ecran, 'red', (self.x * 100, self.y * 100),
+        #              (self.x * 100 + LARG * math.cos(self.angle),
+        #               self.y * 100 + LARG * math.sin(self.angle)), 2)
 
     def maj(self):
         self.bouger()
