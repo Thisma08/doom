@@ -27,8 +27,8 @@ class Jeu:
 
     def dessine(self):
         self.ecran.fill('black')
-        self.carte.dessiner()
-        self.joueur.dessiner()
+        # self.carte.dessiner()
+        # self.joueur.dessiner()
 
     def chequer_evenements(self):
         for e in pg.event.get():

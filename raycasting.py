@@ -48,8 +48,13 @@ class RayCasting:
             else:
                 prof = prof_hor
 
-            pg.draw.line(self.jeu.ecran, 'yellow', (100 * jx, 100 * jy),
-                         (100 * jx + 100 * prof * cos_a, 100 * jy + 100 * prof * sin_a), 2)
+            #Retire l'effet "Fisheye"
+            prof *= math.cos(self.jeu.joueur.angle - angle_ray)
+
+            haut_proj = DIST_MUR / (prof + 0.0001)
+
+            couleur = [255 / (1 + prof ** 5 * 0.00002)] * 3
+            pg.draw.rect(self.jeu.ecran, couleur, (ray * ECHELLE, DEMI_HAUT - haut_proj // 2, ECHELLE, haut_proj))
 
     def maj(self):
         self.ray_cast()
