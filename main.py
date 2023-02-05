@@ -4,6 +4,7 @@ from parametres import *
 from carte import *
 from joueur import *
 from raycasting import *
+from moteur_rendu_objets import *
 
 class Jeu:
     def __init__(self):
@@ -16,6 +17,7 @@ class Jeu:
     def nouveau_jeu(self):
         self.carte = Carte(self)
         self.joueur = Joueur(self)
+        self.mro = MoteurRenduObjets(self)
         self.rc = RayCasting(self)
 
     def maj(self):
@@ -27,6 +29,7 @@ class Jeu:
 
     def dessine(self):
         self.ecran.fill('black')
+        self.mro.dessiner()
         # self.carte.dessiner()
         # self.joueur.dessiner()
 
