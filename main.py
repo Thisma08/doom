@@ -9,6 +9,7 @@ from moteur_rendu_objets import *
 class Jeu:
     def __init__(self):
         pg.init()
+        pg.mouse.set_visible(False)
         self.ecran = pg.display.set_mode(RES)
         self.horloge = pg.time.Clock()
         self.dt = 1
@@ -28,7 +29,7 @@ class Jeu:
         pg.display.set_caption(f'{self.horloge.get_fps():.1f}')
 
     def dessine(self):
-        self.ecran.fill('black')
+        # self.ecran.fill('black')
         self.mro.dessiner()
         # self.carte.dessiner()
         # self.joueur.dessiner()

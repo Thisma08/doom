@@ -6,9 +6,19 @@ class MoteurRenduObjets:
         self.jeu = j
         self.ecran = self.jeu.ecran
         self.textures_murs = self.charger_textures_murs()
+        self.image_ciel = self.get_texture('ressources/textures/ciel.png', (LARG, DEMI_HAUT))
+        self.decalage_ciel = 0
 
     def dessiner(self):
+        self.dessiner_fond()
         self.rendre_objets()
+
+    def dessiner_fond(self):
+        self.decalage_ciel = (self.decalage_ciel + 4.5 * self.jeu.joueur.rel) % LARG
+        self.ecran.blit(self.image_ciel, (-self.decalage_ciel, 0))
+        self.ecran.blit(self.image_ciel, (-self.decalage_ciel + LARG, 0))
+        pg.draw.rect(self.ecran, COULEUR_SOL, (0, DEMI_HAUT, LARG, HAUT))
+
 
     def rendre_objets(self):
         liste_objets = self.jeu.rc.objets_a_rendre
