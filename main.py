@@ -5,6 +5,7 @@ from carte import *
 from joueur import *
 from raycasting import *
 from moteur_rendu_objets import *
+from objet_sprite import *
 
 class Jeu:
     def __init__(self):
@@ -20,10 +21,12 @@ class Jeu:
         self.joueur = Joueur(self)
         self.mro = MoteurRenduObjets(self)
         self.rc = RayCasting(self)
+        self.ss = ObjetSprite(self)
 
     def maj(self):
         self.joueur.maj()
         self.rc.maj()
+        self.ss.maj()
         pg.display.flip()
         self.dt = self.horloge.tick(FPS)
         pg.display.set_caption(f'{self.horloge.get_fps():.1f}')
