@@ -22,11 +22,13 @@ class Jeu:
         self.mro = MoteurRenduObjets(self)
         self.rc = RayCasting(self)
         self.ss = ObjetSprite(self)
+        self.ans = SpriteAnime(self)
 
     def maj(self):
         self.joueur.maj()
         self.rc.maj()
         self.ss.maj()
+        self.ans.maj()
         pg.display.flip()
         self.dt = self.horloge.tick(FPS)
         pg.display.set_caption(f'{self.horloge.get_fps():.1f}')
