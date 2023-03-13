@@ -3,29 +3,36 @@ import sys
 from parametres import *
 from carte import *
 from joueur import *
+from raycasting import *
+from moteur_rendu_objets import *
 
 class Jeu:
     def __init__(self):
         pg.init()
+        pg.mouse.set_visible(False)
         self.ecran = pg.display.set_mode(RES)
         self.horloge = pg.time.Clock()
         self.dt = 1
-        self.nouvelle_part()
+        self.nouveau_jeu()
 
-    def nouvelle_part(self):
+    def nouveau_jeu(self):
         self.carte = Carte(self)
         self.joueur = Joueur(self)
+        self.mro = MoteurRenduObjets(self)
+        self.rc = RayCasting(self)
 
     def maj(self):
         self.joueur.maj()
+        self.rc.maj()
         pg.display.flip()
         self.dt = self.horloge.tick(FPS)
         pg.display.set_caption(f'{self.horloge.get_fps():.1f}')
 
     def dessine(self):
-        self.ecran.fill('black')
-        self.carte.dessiner()
-        self.joueur.dessiner()
+        # self.ecran.fill('black')
+        self.mro.dessiner()
+        # self.carte.dessiner()
+        # self.joueur.dessiner()
 
     def chequer_evenements(self):
         for e in pg.event.get():
