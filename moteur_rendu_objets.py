@@ -22,6 +22,7 @@ class MoteurRenduObjets:
 
     def rendre_objets(self):
         liste_objets = self.jeu.rc.objets_a_rendre
+        liste_objets = sorted(self.jeu.rc.objets_a_rendre, key=lambda t: t[0], reverse=True)
         for prof, image, pos in liste_objets:
             self.ecran.blit(image, pos)
 
