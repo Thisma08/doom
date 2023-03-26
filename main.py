@@ -7,6 +7,7 @@ from raycasting import *
 from moteur_rendu_objets import *
 from objet_sprite import *
 from gestion_objets import *
+from arme import *
 
 class Jeu:
     def __init__(self):
@@ -25,6 +26,7 @@ class Jeu:
         self.ss = ObjetSprite(self)
         self.ans = SpriteAnime(self)
         self.go = GestionObjets(self)
+        self.a = Arme(self)
 
     def maj(self):
         self.joueur.maj()
@@ -32,6 +34,7 @@ class Jeu:
         self.ss.maj()
         self.ans.maj()
         self.go.maj()
+        self.a.maj()
         pg.display.flip()
         self.dt = self.horloge.tick(FPS)
         pg.display.set_caption(f'{self.horloge.get_fps():.1f}')
@@ -39,6 +42,7 @@ class Jeu:
     def dessine(self):
         # self.ecran.fill('black')
         self.mro.dessiner()
+        self.a.dessiner()
         # self.carte.dessiner()
         # self.joueur.dessiner()
 
@@ -47,6 +51,7 @@ class Jeu:
             if e.type == pg.QUIT or (e.type == pg.KEYDOWN and e.key == pg.K_ESCAPE):
                 pg.quit()
                 sys.exit()
+            self.joueur.evenement_tir_unique(e)
 
     def execute(self):
         while True:
