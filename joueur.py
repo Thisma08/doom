@@ -2,11 +2,19 @@ from parametres import *
 import pygame as pg
 import math
 
+
 class Joueur:
     def __init__(self, j):
         self.jeu = j
         self.x, self.y = POS_JOUEUR
         self.angle = ANGLE_JOUEUR
+        self.tir = False
+
+    def evenement_tir_unique(self, e):
+        if e.type == pg.MOUSEBUTTONDOWN:
+            if e.button == 1 and not self.tir and not self.jeu.a.recharge:
+                self.tir = True
+                self.jeu.a.recharge = True
 
     def bouger(self):
         sin_a = math.sin(self.angle)
@@ -62,9 +70,8 @@ class Joueur:
         if sx < BORDURE_GAUCHE_SOURIS or sx > BORDURE_DROITE_SOURIS:
             pg.mouse.set_pos([DEMI_LARG, DEMI_HAUT])
         self.rel = pg.mouse.get_rel()[0]
-        self.rel =max(-MVT_REL_MAX_SOURIS, min(MVT_REL_MAX_SOURIS, self.rel))
+        self.rel = max(-MVT_REL_MAX_SOURIS, min(MVT_REL_MAX_SOURIS, self.rel))
         self.angle += self.rel * SENSIBILITE_SOURIS * self.jeu.dt
-
 
     def maj(self):
         self.bouger()

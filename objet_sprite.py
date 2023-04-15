@@ -65,7 +65,6 @@ class SpriteAnime(ObjetSprite):
         self.verif_temps_animation()
         self.animer(self.images)
 
-
     def animer(self, images):
         if self.declencheur_animation:
             images.rotate(-1)
