@@ -8,6 +8,7 @@ from moteur_rendu_objets import *
 from objet_sprite import *
 from gestion_objets import *
 from arme import *
+from pathfinding import *
 
 class Jeu:
     def __init__(self):
@@ -30,6 +31,7 @@ class Jeu:
         self.ans = SpriteAnime(self)
         self.go = GestionObjets(self)
         self.a = Arme(self)
+        self.pf = Pathfinding(self)
 
     def maj(self):
         self.joueur.maj()
